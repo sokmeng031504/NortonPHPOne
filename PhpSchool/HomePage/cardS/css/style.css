@@ -1,0 +1,22 @@
+@media only screen and (max-width:900px) {
+    .certificate {
+        /* background-color: rgb(234, 234, 234); */
+        height: 50%;
+    }
+}
+
+@media only screen and (max-width:600px) {
+    /* For mobile phones: */
+    .certificate {
+        /* background-color: rgb(132, 0, 0); */
+        width: 100%;
+    }
+}
+
+.bg-primarysb {
+    background-color: rgb(160, 144, 0);
+}
+
+.bg-primarys {
+    background-color: rgb(170, 170, 0);
+}
