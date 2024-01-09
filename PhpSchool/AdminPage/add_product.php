@@ -7,6 +7,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Dashboard - SB Admin</title>
+        <link rel="icon" type="image/x-icon" href="assets/logo3.jpg" style="border-radius: 100%;"/>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -61,6 +62,10 @@
                                         <tr>
                                             <td>Type Product</td>
                                             <td><input  class="form-control" type="txtType" name="txtType" required></td>
+                                        </tr>
+                                         <tr>
+                                            <td>Discount</td>
+                                            <td><input  class="form-control" type="txtDiscount" name="txtDiscount" required></td>
                                         </tr>
                                         <tr>
                                             <td>Description</td>

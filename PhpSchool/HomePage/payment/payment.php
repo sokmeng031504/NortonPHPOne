@@ -37,13 +37,75 @@
                 </div>
             </div>
         </nav>
+
+ <?php
+ include_once('../../AdminPage/config.php');
+ $id = isset($_REQUEST['proId']) ? $_REQUEST['proId'] : '' ;
+ $query = "SELECT tbl_adventure.*, tbl_cart.*
+ FROM tbl_adventure
+ LEFT JOIN tbl_cart ON tbl_adventure.pro_id = tbl_cart.pro_item
+ WHERE tbl_adventure.pro_id = '$id'";
+$result = mysqli_query($con, $query);
+if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_array($result)) {
+        $total_price = 0;
+        ?>
+            <table class="table" style="width: 900px;margin:0 auto">
+            <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Image</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quatity</th>
+                <!-- <th scope="col">Discount(%)</th> -->
+                <th scope="col">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <form id="cartForm">
+                    <th scope="row" width="50px">1</th>
+                        <td width="100px"> <img class="card-img-top" src="../images/<?php echo $row['img']; ?>" alt="..." width="100%" height="100%"/></td>
+                        <td width="200px"><input  class="form-control" type="text" value=" <?php echo $row['price'] ?> $" id="priceCart" name="priceCart"></td>
+                        <td  width="200px">
+                            <input type="Qty" class="form-control"  placeholder="Quantity" id="qty" value="1" name="qty">
+                        </td>
+                        <!-- <td  width="100px">
+                            <input type="discount" class="form-control" hidden  placeholder="(%)" id="discount" value="" name="discount">
+                        </td> -->
+                        <td width="200px"> <strong  id="total"> <?php echo $total_price; ?></strong>$</td>
+                   
+                    <!-- <td colspan="5" align="right">
+                        <button id="confirm" class="btn btn-success">Confirm</button>
+                    </td> -->
+                </form>
+                </tr>
+            </tbody>
+            </table>
+        <?php
+    }}
+        ?>
+
+<br>
+
+
+
+<div class="mapouter">
+    <div class="gmap_canvas">
+        <div id="searchContainer" class="float-left">
+            <input type="text" id="addressInput" placeholder="Enter address">
+            <button id="searchBtn" class="btn btn-success">Search</button>
+            <div class="confirm-location">
+                <button id="confirm-location" class="btn btn-success">Confirm Location</button>
+            </div>
+        </div>
+        <iframe id="googleMap" src="https://maps.google.com/maps?q=university%20of%20san%20francisco&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed" frameborder="0" scrolling="no"></iframe>
+    </div>
+</div>
+
+<script src="script.js"></script>
 <div class="container d-lg-flex">
         <div class="box-1 bg-light user">
-            <div class="d-flex align-items-center mb-3">
-                <img src="https://images.pexels.com/photos/4925916/pexels-photo-4925916.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                    class="pic rounded-circle" alt="">
-                <p class="ps-2 name">Oliur</p>
-            </div>
             <div class="box-inner-1 pb-3 mb-3 ">
                 <div class="d-flex justify-content-between mb-3 userdetails">
                     <p class="fw-bold">Lightroom Presets</p>
@@ -59,15 +121,15 @@
                     </div>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                            <img src="../images/backpack5.webp"
                                 class="d-block w-100">
                         </div>
                         <div class="carousel-item">
-                            <img src="https://images.pexels.com/photos/258092/pexels-photo-258092.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                            <img src="../images/backpack.webp"
                                 class="d-block w-100 h-100">
                         </div>
                         <div class="carousel-item">
-                            <img src="https://images.pexels.com/photos/7974/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                            <img src="../images/backpack1.png"
                                 class="d-block w-100">
                         </div>
                     </div>
@@ -146,21 +208,21 @@
                 <form action="">
                     <div class="mb-3">
                         <p class="dis fw-bold mb-2">Email address</p>
-                        <input class="form-control" type="email" value="luke@skywalker.com">
+                        <input class="form-control" type="email" value="" id="address">
                     </div>
                     <div>
                         <p class="dis fw-bold mb-2">Card details</p>
                         <div class="d-flex align-items-center justify-content-between card-atm border rounded">
                             <div class="fab fa-cc-visa ps-3"></div>
-                            <input type="text" class="form-control" placeholder="Card Details">
+                            <input type="text" class="form-control" placeholder="Card Details" required>
                             <div class="d-flex w-50">
-                                <input type="text" class="form-control px-0" placeholder="MM/YY">
-                                <input type="password" maxlength=3 class="form-control px-0" placeholder="CVV">
+                                <input type="text" class="form-control px-0" placeholder="MM/YY" required>
+                                <input type="password" maxlength=3 class="form-control px-0" placeholder="CVV" required>
                             </div>
                         </div>
                         <div class="my-3 cardname">
                             <p class="dis fw-bold mb-2">Cardholder name</p>
-                            <input class="form-control" type="text">
+                            <input class="form-control" type="text" required>
                         </div>
                         <div class="address">
                             <p class="dis fw-bold mb-3">Billing address</p>
@@ -195,8 +257,10 @@
                                     <p class="fw-bold">Total</p>
                                     <p class="fw-bold"><span class="fas fa-dollar-sign"></span>35.80</p>
                                 </div>
+                                <a href="../index.php">
                                 <div class="btn btn-primary mt-2">Pay<span class="fas fa-dollar-sign px-1"></span>35.80
                                 </div>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -204,6 +268,77 @@
             </div>
         </div>
     </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    const searchBtn = document.getElementById('searchBtn');
+    const addressInput = document.getElementById('addressInput');
+    const googleMap = document.getElementById('googleMap');
+
+    searchBtn.addEventListener('click', function () {
+        const address = encodeURIComponent(addressInput.value);
+        const mapSrc = `https://maps.google.com/maps?q=${address}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
+        googleMap.src = mapSrc;
+
+
+    });
+
+    $(document).ready(function(){
+        $("#confirm-location").click(function(){
+        var add = $("#addressInput").val();
+        alert(add);
+            if(add != ""){
+                $("#address").text(add);
+                $("#address").val(add);
+            }
+        });
+
+        $("#number-add-cart").click(function(){
+            var card = $("#number-add-cart").val();
+            alert(card)
+        })
+    });
+
+
+});
+
+
+        $("#qty, #priceCart").change(function(){
+            // Get the selected quantity and price
+            var discount = $("#discount").val();
+            var selectedQuantity = $("#qty").val();
+            var price = $("#priceCart").val();  
+            price = price.substr(0, price.length-1); 
+            var formData = $("#cartForm").serialize();
+
+            // alert(price);
+            // Calculate the total
+            var total = selectedQuantity * price;
+            // Update the total input field
+            $("#total").val(total);
+            $("#total").text(total);
+            // alert(total)
+
+            // $.ajax({
+            //         type: "POST",
+            //         url: "paidPay.php", // Change this to your server-side script
+            //         data: formData,
+            //         success: function(response){
+            //             alert(response); // Show the server response
+            //         },
+            //         error: function(xhr, status, error){
+            //             console.error(xhr.responseText); // Log any errors
+            //         }
+            //     });
+        })
+
+
+            // Initialize total on page load
+        $(document).ready(function() {
+            updateTotal();
+        });
+    </script>
 </body>
 </html>

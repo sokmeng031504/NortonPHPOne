@@ -8,19 +8,55 @@
         <title>Adventure Shop</title>
         <!-- Favicon-->
         <!-- Bootstrap icons-->
+        <link rel="icon" type="image/x-icon" href="assets/logo3.jpg" style="border-radius: 100%;"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    
+        <link href="css/aos.css?ver=1.1.0" rel="stylesheet">
+        <!-- <link href="css/bootstrap.min.css?ver=1.1.0" rel="stylesheet">
+        <link href="css/main.css?ver=1.1.0" rel="stylesheet"> -->
+
+
+
         <?php
-            if (include_once ('../AdminPage/config.php')) {
-                // File included successfully
-            } else {
-                // Handle the error or display a message
-                die("Failed to include 'added_product.php'");
-            }
-        ?>
+if (include_once ('../AdminPage/config.php')) {
+    // File included successfully
+} else {
+    // Handle the error or display a message
+    die("Failed to include 'added_product.php'");
+}
+?>
         <style>
+            body {
+    font-family: Arial, sans-serif;
+}
+
+            .popup {
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: #f1f1f1;
+                padding: 20px;
+                border: 1px solid #ccc;
+                z-index: 1;
+            }
+
+            .popup-content {
+                text-align: center;
+            }
+
+            .close {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                font-size: 20px;
+                cursor: pointer;
+            }
+
             .box{
                 transition: 1s ease;
             }
@@ -50,7 +86,7 @@
         <a id="button"></a>
         <!-- Navigation-->
         <div style="margin-top: -20px;">
-            <?php include './header.php'; ?>
+            <?php include './header.php';?>
         </div>
         <!-- Header-->
         <!-- Video -->
@@ -63,24 +99,24 @@
         <!-- Section-->
         <!-- Product -->
         <div style="margin-top:-110px">
-            <?php include('./productBox/product.php') ?>
+            <?php include './productBox/product.php'?>
         </div>
-        
-        </div height="200px;">
+       
+        <div height="200px" data-aos="fade-up" data-aos-offset="400">
           <?php include './previewPro/index.php';?>
         <div>
         <!-- Card Slide -->
         <br>
-        <div>
-            <?php include('./cardSlide/cardSlide.php') ?>
+        <div data-aos="fade-up" data-aos-offset="20">
+            <?php include './cardSlide/cardSlide.php'?>
         </div>
         <!-- Contact-->
         <div style="border:#ccc 1px solid;padding:10px;margin:0 auto;border-radius: 50px;">
             <br>
-            <?php include('./contact/index.php') ?>
+            <?php include './contact/index.php'?>
         </div>
         <!-- Product -->
-        <div style="width: 1100px;margin:0 auto">
+        <div style="width: 1100px;margin:0 auto" data-aos="fade-up" data-aos-offset="20">
             <div class="product-minimal"  >
 
                 <div class="product-showcase" id="top-Rated" >
@@ -245,14 +281,15 @@
         </div>
         <!-- Feed back -->
         <br>
-    
+
         <div style="margin:0 auto;width:1100px">
             <h3>Feed Back</h3>
-            <?php include('./feedBack/feedBack.php') ?>
+            <?php include './feedBack/feedBack.php'?>
         </div>
+        
         <!-- Footer -->
          <br>
-            <?php include('./footer/footer.php') ?>
+            <?php include './footer/footer.php'?>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -275,10 +312,30 @@
                     $('html, body').animate({ scrollTop: 0 }, '800'); // Adjust the duration as needed
                 });
             });
+
+            document.addEventListener('DOMContentLoaded', function () {
+                const openPopupBtn = document.getElementById('openPopupBtn');
+                const closePopupBtn = document.getElementById('closePopupBtn');
+                const popupContainer = document.getElementById('popupContainer');
+
+                openPopupBtn.addEventListener('click', function () {
+                    popupContainer.style.display = 'block';
+                });
+
+                closePopupBtn.addEventListener('click', function () {
+                    popupContainer.style.display = 'none';
+                });
+            });
+
         </script>
 
         <!-- Core theme JS-->
-      
+
     </body>
-    
+            <script src="js/core/jquery.3.2.1.min.js?ver=1.1.0"></script>
+            <script src="js/core/popper.min.js?ver=1.1.0"></script>
+            <script src="js/core/bootstrap.min.js?ver=1.1.0"></script>
+            <script src="js/now-ui-kit.js?ver=1.1.0"></script>
+            <script src="js/aos.js?ver=1.1.0"></script>
+            <script src="js/main.js?ver=1.1.0"></script>
 </html>

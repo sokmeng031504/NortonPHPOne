@@ -7,14 +7,15 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Tables - SB Admin</title>
+        <link rel="icon" type="image/x-icon" href="assets/logo3.jpg" style="border-radius: 100%;"/>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
-         <?php include('./navBar.php') ?>
+         <?php include './navBar.php'?>
         <div id="layoutSidenav">
-            <?php include('./layoutSide.php') ?>
+            <?php include './layoutSide.php'?>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
@@ -42,18 +43,19 @@
                                             <th>Point date</th>
                                             <th>Price</th>
                                             <th>Type</th>
+                                            <th>Discount</th>
                                             <th>Description</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-include_once 'config.php';
-$query = "SELECT * FROM tbl_adventure ORDER BY pro_id DESC";
-$result = mysqli_query($con, $query);
-if (mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_array($result)) {
-        ?>
+                                            include_once 'config.php';
+                                            $query = "SELECT * FROM tbl_adventure ORDER BY pro_id DESC";
+                                            $result = mysqli_query($con, $query);
+                                            if (mysqli_num_rows($result) > 0) {
+                                                while ($row = mysqli_fetch_array($result)) {
+                                                    ?>
                                                     <tr>
                                                         <td><?php echo $row['pro_id']; ?></td>
                                                         <td><?php echo $row['pro_name']; ?></td>
@@ -62,10 +64,11 @@ if (mysqli_num_rows($result) > 0) {
                                                         <td><?php echo $row['point']; ?></td>
                                                         <td><?php echo $row['price']; ?></td>
                                                         <td><?php echo $row['type_product']; ?></td>
+                                                        <td><?php echo $row['discount']; ?></td>
                                                         <td><?php echo $row['des']; ?></td>
                                                         <td>
                                                             <a href="edit_product.php?proId=<?php echo $row['pro_id']; ?>" class="btn btn-primary">Edit</a>
-                                                            <a href="delete.php?pro_id=<?php echo $row['pro_id']; ?>" class="btn btn-danger"  onclick="confirmDelete(<?php echo $row['pro_id']; ?>)">Delete</a>
+                                                            <a href="#" class="btn btn-danger delete-button" data-proid="<?php echo $row['pro_id']; ?>">Delete</a>
                                                         </td>
                                                     </tr>
                                                     <?php
@@ -92,19 +95,26 @@ if (mysqli_num_rows($result) > 0) {
                 </footer> -->
             </div>
         </div>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <script>
-function confirmDelete(proId) {
-    var confirmDelete = confirm("Are you sure you want to delete?");
-    if (confirmDelete==true) {
-        // If the user confirms, redirect to the delete.php with the pro_id
-        window.location.href = "delete.php?pro_id=" + proId;
-        alert("Delete success!!")
-    } else {
-        // If the user cancels, do nothing or provide feedback
-        alert("Cancel Delete")
-        return false;
-    }
-}
+            $(document).ready(function () {
+                $(".delete-button").on("click", function (event) {
+                    var productId = $(this).data("proid");
+                    var confirmation = confirm("Are you sure you want to delete this item?");
+
+                    if (confirmation) {
+                        // If the user clicks "OK" on the confirmation dialog, delay redirection for a short time
+                        setTimeout(function () {
+                            window.location.href = "delete.php?pro_id=" + productId;
+                        }, 100); // Adjust the delay time as needed
+                    } else {
+                        window.location =window.location.href;
+                    }
+
+                    // Prevent the default behavior of the anchor tag
+                    event.preventDefault();
+                });
+            });
 </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>

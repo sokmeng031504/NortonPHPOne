@@ -1,4 +1,9 @@
-<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+<style>
+    .nav_nav{
+        box-shadow: 0pc 5px 8px 0px #ccc;
+    }
+</style>
+<nav class="sb-topnav navbar navbar-expand p-2 text-white bg-opacity-75 nav_nav">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="daskboard.php">Adventure Shop</a>
             <!-- Sidebar Toggle-->

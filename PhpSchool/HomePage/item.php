@@ -21,7 +21,7 @@
         <meta name="author" content="" />
         <title>Shop Item - Start Bootstrap Template</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="assets/logo3.jpg" style="border-radius: 100%;"/>
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
@@ -30,7 +30,36 @@
     </head>
     <body>
         <!-- Navigation-->
-        <?php include('./header.php') ?>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container px-4 px-lg-9">
+                <a class="navbar-brand" href="./index.php" style="color:crimson"><img src="./images/logo3.jpg" alt="" width="50px" id="img"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="./index.php">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./about.php">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#!">All Products</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="#new-product">New Product</a></li>
+                                <li><a class="dropdown-item" href="#feedback">All Feedback</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex" id="to-cart">
+                        <a  href="./payment/payment.php?proId=<?php echo $row['pro_id']; ?>" class="btn btn-outline-dark" >
+                            <i class="bi-cart-fill me-1"></i>
+                            Cart
+                            <span class="badge bg-dark text-white ms-1 rounded-pill" id="number-add-cart">0</span>
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </nav>
         <!-- Product section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 my-5">
@@ -47,8 +76,8 @@
                         </div>
                         <p class="lead"><?php echo $row['des']; ?></p>
                         <div class="d-flex" style="text-align:center;margin-left:100px">
-                            <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                            <button class="btn btn-outline-dark flex-shrink-0" type="button" id="at-to-cart">
+                            <input class="form-control text-center me-3" id="inputQuantity" type="text"  style="max-width: 3rem" />
+                            <button class="btn btn-outline-dark flex-shrink-0" type="button" id="cart">
                                 <i class="bi-cart-fill me-1" id="at-to-cart"></i>
                                 Add to cart
                             </button>
@@ -67,9 +96,7 @@
             include_once('relateItem.php');
         ?>
         <!-- Footer-->
-        <footer class="py-5">
         <?php include('./footer/footer.php') ?>
-        </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
@@ -77,9 +104,10 @@
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
     $(document).ready(function(){
-        $("#at-to-cart").click(function () {
+        $("#cart").click(function () {
             var currentValue = parseInt($("#number-add-cart").text());
-
+            var qty = $("#inputQuantity").text();
+            alert("One", qty)
             // Increment the value by 1
             var newValue = currentValue + 1;
 
@@ -102,6 +130,8 @@
                 return false;
             }
         });
+
+       
     });
 </script>
 

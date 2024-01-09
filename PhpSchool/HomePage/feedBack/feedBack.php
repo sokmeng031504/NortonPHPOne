@@ -42,6 +42,6 @@
     </div>
   </div>
   <div class="col-12">
-    <button class="btn btn-primary" type="submit"  style="float:right; background-color: hsl(158, 36%, 37%);color:whitesmoke">Submit form</button>
+    <button class="btn" type="submit"  style="float:right; background-color:  #dc3545; color:azure">Submit form</button>
   </div>
 </form>

@@ -19,10 +19,62 @@
         box-shadow: 0px 10px 15px -8px hsl(0, 90%, 70%);
         background-color:  rgba(255, 255, 255, 0.69);
       }
-      
+
+.popup {
+  margin: 0 auto;
+  width: 1100px;
+  position: fixed;
+  height: 100vh;
+  background:hsl(0, 100%, 70%);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: none;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  /* opacity: 0;
+  visibility: hidden;
+  pointer-events: none; */
+  z-index: 10;
+ 
+}
+
+.popup-content {
+    text-align: center;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 50px;
+    cursor: pointer;
+    color: hsl(0, 100%, 70%);
+    background-color: azure;
+}
+
     </style>
 </head>
 <body>
+<div id="popupContainer" class="popup">
+    <div class="popup-content">
+        <span class="close" id="closePopupBtn">&times;</span>
+        <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
+        </div>
+    </div>
     <div class="product-box" style="width: 500px;margin:0 auto;" id="new-product">
 
         <!--
@@ -376,8 +428,8 @@
               if (mysqli_num_rows($result) > 0) {
                   while ($row = mysqli_fetch_array($result)) {
                       ?>
-            <div class="showcase">
-              <div class="showcase-banner">
+            <div class="showcase" >
+              <div class="showcase-banner"   data-aos="fade-up" data-aos-offset="300">
               <div class="text-center">
                                 <a class="btn  border mt-auto" href="item.php?proId=<?php echo $row['pro_id']; ?>">
                             </div>
@@ -385,7 +437,7 @@
               <img width="300px"  height="250px" class="card-img-top" src="../images/<?php echo $row['img']; ?>">
 
                 <p class="showcase-badge angle " style="background-color: hsl(0, 90%, 70%);"><?php echo $row['type_product'] ?></p>
-</a>
+              </a>
                 <div class="showcase-actions">
                   <button class="btn-action">
                     <ion-icon name="heart-outline"></ion-icon>
@@ -399,9 +451,11 @@
                     <ion-icon name="repeat-outline"></ion-icon>
                   </button>
 
-                  <button class="btn-action">
+                  <button class="btn-action" id="openPopupBtn">
                     <ion-icon name="bag-add-outline"></ion-icon>
                   </button>
+
+
                 </div>
               </div>
 
@@ -421,8 +475,8 @@
                 </div>
 
                 <div class="price-box">
-                  <p class="price"><?php echo $row['price'] ?></p>
-                  <del>$56.00</del>
+                  <del><?php echo $row['discount'] ?>$</del>->
+                  <p class="price"><?php echo $row['price'] ?>$</p>
                 </div>
 
               </div>
@@ -503,110 +557,21 @@
 
 <!-- JavaScript code -->
 <script>
-    'use strict';
 
-// modal variables
-const modal = document.querySelector('[data-modal]');
-const modalCloseBtn = document.querySelector('[data-modal-close]');
-const modalCloseOverlay = document.querySelector('[data-modal-overlay]');
+document.addEventListener('DOMContentLoaded', function () {
+                const openPopupBtn = document.getElementById('openPopupBtn');
+                const closePopupBtn = document.getElementById('closePopupBtn');
+                const popupContainer = document.getElementById('popupContainer');
 
-// modal function
-const modalCloseFunc = function () { modal.classList.add('closed') }
+                openPopupBtn.addEventListener('click', function () {
+                    popupContainer.style.display = 'block';
+                });
 
-// modal eventListener
-modalCloseOverlay.addEventListener('click', modalCloseFunc);
-modalCloseBtn.addEventListener('click', modalCloseFunc);
+                closePopupBtn.addEventListener('click', function () {
+                    popupContainer.style.display = 'none';
+                });
+            });
 
-
-
-
-
-// notification toast variables
-const notificationToast = document.querySelector('[data-toast]');
-const toastCloseBtn = document.querySelector('[data-toast-close]');
-
-// notification toast eventListener
-toastCloseBtn.addEventListener('click', function () {
-  notificationToast.classList.add('closed');
-});
-
-
-
-
-
-// mobile menu variables
-const mobileMenuOpenBtn = document.querySelectorAll('[data-mobile-menu-open-btn]');
-const mobileMenu = document.querySelectorAll('[data-mobile-menu]');
-const mobileMenuCloseBtn = document.querySelectorAll('[data-mobile-menu-close-btn]');
-const overlay = document.querySelector('[data-overlay]');
-
-for (let i = 0; i < mobileMenuOpenBtn.length; i++) {
-
-  // mobile menu function
-  const mobileMenuCloseFunc = function () {
-    mobileMenu[i].classList.remove('active');
-    overlay.classList.remove('active');
-  }
-
-  mobileMenuOpenBtn[i].addEventListener('click', function () {
-    mobileMenu[i].classList.add('active');
-    overlay.classList.add('active');
-  });
-
-  mobileMenuCloseBtn[i].addEventListener('click', mobileMenuCloseFunc);
-  overlay.addEventListener('click', mobileMenuCloseFunc);
-
-}
-
-
-
-
-
-// accordion variables
-const accordionBtn = document.querySelectorAll('[data-accordion-btn]');
-const accordion = document.querySelectorAll('[data-accordion]');
-
-for (let i = 0; i < accordionBtn.length; i++) {
-
-  accordionBtn[i].addEventListener('click', function () {
-
-    const clickedBtn = this.nextElementSibling.classList.contains('active');
-
-    for (let i = 0; i < accordion.length; i++) {
-
-      if (clickedBtn) break;
-
-      if (accordion[i].classList.contains('active')) {
-
-        accordion[i].classList.remove('active');
-        accordionBtn[i].classList.remove('active');
-
-      }
-
-    }
-
-    this.nextElementSibling.classList.toggle('active');
-    this.classList.toggle('active');
-
-  });
-
-}
-
-window.addEventListener('scroll', reveal);
-function reveal(){
-  var reveals = document.querySelectorAll('.reveal');
-  for(var i=0; i< reveals.length > 0; i++){
-    var windowHeight =window.innerHeight;
-    var revealTop = reveals[i].getBoundingClientRect().top;
-    var revealPoint = 150;
-    if(revealTop < windowHeight - revealPoint){
-      reveals[i].classList.add('active');
-    }
-    else{
-      reveals[i].classList.remove('active');
-    }
-  }
-}
 </script>
 
 

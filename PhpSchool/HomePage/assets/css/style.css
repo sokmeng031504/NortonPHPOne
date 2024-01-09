@@ -1298,9 +1298,9 @@ body::-webkit-scrollbar-thumb:hover { background: hsl(0, 0%, 70%); }
 }
 
 .product-grid .btn-action:hover {
-  background: var(--eerie-black);
+  background:hsl(0, 100%, 70%);
   color: var(--white);
-  border-color: var(--eerie-black);
+  border-color: hsl(0, 100%, 70%);
 }
 
 .product-grid .showcase-content { padding: 15px 20px 0; }

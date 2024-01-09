@@ -11,15 +11,15 @@
 
 	</head>
 	<body>
-	<section class="" width="1100px" id="contact">
+	<section class=""  id="contact" data-aos="fade-up" data-aos-offset="500">
 	<div id="contact" class="contact-area section-padding">
 	<div class="container" style="padding:50px">										
 		<div class="section-title text-center">
-			<h1>Get in Touch</h1>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vitae risus nec dui venenatis dignissim. Aenean vitae metus in augue pretium ultrices.</p>
+			<h1>Contact Us for more information</h1>
+			<p>ill give you more details</p>
 		</div>					
 		<div class="row">
-			<div class="col-lg-7">	
+			<div class="col-lg-7"  data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">	
 				<div class="contact">
 					<form class="form" name="enq" method="post" action="contact.php" onsubmit="return validation();">
 						<div class="row">
@@ -44,11 +44,11 @@
 					</form>
 				</div>
 			</div><!--- END COL --> 
-			<div class="col-lg-5">
+			<div class="col-lg-5" data-aos="fade-left" data-aos-offset="50" data-aos-duration="500">
 				<div class="single_address">
 					<i class="fa fa-map-marker"></i>
 					<h4>Our Address</h4>
-					<p>3481 Melrose Place, Beverly Hills</p>
+					<p>26D Wat Phnom-Phnom Pehn City</p>
 				</div>
 				<div class="single_address">
 					<i class="fa fa-envelope"></i>
@@ -58,7 +58,7 @@
 				<div class="single_address">
 					<i class="fa fa-phone"></i>
 					<h4>Call us on</h4>
-					<p>(+1) 517 397 7100</p>
+					<p>(+855) 010 42 90 90</p>
 				</div>
 				<div class="single_address">
 					<i class="fa fa-clock-o"></i>

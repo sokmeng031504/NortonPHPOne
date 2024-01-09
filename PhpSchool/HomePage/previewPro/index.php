@@ -58,14 +58,13 @@
     </style>
   </head>
   <body>
-    <main class="" height="200px;">
+    <main class="" height="200px;" width="1100px">
       <section
-      style="border-radius: 70%;border:1px solid hsl(158, 36%, 37%);"
         class="min-vh-80 d-flex justify-content-center align-items-center"
       >
         <figure
           class="card border-0 mx-3 bg-white darkgrayish-blue my-3 flex-lg-row col-lg-8 col-xl-8 col-xxl-6"
-          style="width:900px;border-radius: 90%;border:1px solid hsl(158, 36%, 37%);background:hsl(158, 36%, 37%)"
+          style="width:1100px;border-radius: 90%;border:1px solid hsl(158, 36%, 37%);background:hsl(158, 36%, 37%)"
         >
                 <picture class="d-lg-none">
                 <img
@@ -106,7 +105,7 @@
                     <s>$169.99</s>
                   </p>
                 </div>
-                <a
+                <!-- <a
                   href="#"
                   type="button"
                   class="d-flex btn btn-hover align-items-center justify-content-center my-3 py-3 darkcyan-bg-color text-white"
@@ -123,7 +122,7 @@
                     />
                   </svg>
                   Add to Cart
-                </a>
+                </a> -->
               </div>
             </figure>
           </section>

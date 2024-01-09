@@ -3,7 +3,7 @@ if (include_once('./config.php')) {
     // File included successfully
     $id = isset($_REQUEST['proId']) ? $_REQUEST['proId'] : '' ;
 
-    $folder = "../images/";
+    $folder = "./images/";
     $menu1 = isset($_POST['txtmenu']) ? $_POST['txtmenu'] : '';
     $img1 = isset($_FILES['file']['name']) ? $_FILES['file']['name'] : '';
     $size1 = isset($_POST['txtsize']) ? $_POST['txtsize'] : '';

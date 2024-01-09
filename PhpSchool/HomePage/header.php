@@ -7,7 +7,7 @@
         <meta name="author" content="" />
         <title>Adventure Shop</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="assets/logo3.jpg" style="border-radius: 100%;"/>
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
@@ -15,7 +15,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <style>
         .navbar-nav .nav-item:hover .nav-link {
-            color: #007bff; /* Change the color to your preferred hover color */
+            color: black; /* Change the color to your preferred hover color */
+            text-decoration:underline hsl(158, 36%, 37%) 4px;
         }
         #img{
             border-radius: 100%;
@@ -31,6 +32,7 @@
             /*Without this, clicking will make it sticky*/
                 pointer-events: none;
             }
+           
         </style>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
@@ -57,7 +59,7 @@
                         </li>
                     </ul>
                     <form class="d-flex">
-                        <a href="./payment/payment.php" class="btn btn-outline-dark">
+                        <a  href="./payment/payment.php?proId=<?php echo $row['pro_id']; ?>" class="btn btn-outline-dark">
                             <i class="bi-cart-fill me-1"></i>
                             Cart
                             <span class="badge bg-dark text-white ms-1 rounded-pill" id="number-add-cart">0</span>

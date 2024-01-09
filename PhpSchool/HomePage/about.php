@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/logo3.jpg" style="border-radius: 100%;"/>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -88,7 +89,5 @@
         </section>
     </main>
 </body>
-<footer style=" padding:10px;margin:10px">
     <?php include('./footer/footer.php') ?>
-</footer>
 </html>
